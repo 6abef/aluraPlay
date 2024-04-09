@@ -1,0 +1,230 @@
+/* Organización de elementos en distintas pantallas */
+
+/* CABECERA */
+.cabecera__container{
+    /* aplica modo flexbox, ajustando automática e inicialmente todos los elementos a la izquierda */
+    display: flex;
+
+    /* estilizamos elementos */
+    
+    /* espacio automatico entre ellos */
+    justify-content: space-between;
+    /* alineación al centro para dar espacio alrededor */
+    align-items: center;
+    
+    /* Evitar movimiento de cabecera */
+    position: fixed;
+    top:0
+
+}
+
+/* eliminar barra de búsqueda en dispositivos móviles */
+.cabecera__buscar__item{
+    display: none;
+}
+
+
+
+/* MENÚ */
+/* Ajustando posición del menú azul abajo como se espera en celular */
+.menu__container{
+    position: fixed;
+    /* Colocación en parte inferior izq */
+    bottom: 0%;
+    /* Disminuir altura */
+    height: 75px;
+    /* ajustar al ancho de página */
+    width: 100%;
+}
+
+/* ajustar elementos del menú en fila (desde elemento padre) */
+.menu__lista{
+    display: flex;
+    /* espaciado de elementos en menú */
+    justify-content: space-around;
+    /* espaciado superior  */
+    height: 100%;
+
+}
+
+/* Ajuste de cada subelemento de la lista */
+.menu__lista li {
+    /* alineando elementos (felx-item)  al centro del flex-conteiner */
+    align-self: center;
+}
+
+/* colocando texto de cada elemento del menú bajo la imágen  */
+.menu__itens{
+    display: flex;
+    /* imagen arriba y texto abajo */
+    flex-direction: column;
+    /* Separación entre icono y texto */
+    gap: 5px;
+
+}
+
+
+
+/* Asignando configuración especial a cada sublista del menú */
+/* selecciona las tres lista y las oculta */
+.menu__lista:nth-child(2),
+.menu__lista:nth-child(3),
+.menu__lista:nth-child(4){
+    display: none;
+}
+
+
+
+
+/* SECCIÓN SUPERIOR */
+.superior__seccion__container{
+    display: flex;
+    /* dar espacio externo a elementos(botones) */
+    align-items: center;
+    /* alineación de texto (NO quebrar texto al hacerse más pequeño) */
+    white-space: nowrap;
+    /* Scroll (barra de desplazamiento) */
+    overflow: scroll;
+    /* espaciado fijo entre items: GAP */
+    gap: 15px;
+
+}
+
+/* SECCION VIDEOS*/
+/* formato(altura y largo) de cada étiqueta de video */
+.videos__item{
+    height: 303 px;
+    width: 280px;
+     /* distribución según el espacio del contenedor con espacio proporcional */
+     flex-grow: 1;
+     /* Si se desea disminuir tamaño proporcionalmente (flex-shrink) */
+}
+
+
+.videos__container{
+    /* contenedor flex en línea */
+    display: flex;
+    /* distribución de videos en el contenedor */
+    flex-wrap: wrap;
+    /* espaciado entre videos */
+    gap: 10px;
+   
+}
+
+
+
+
+/* RODAPIE */
+/* Alineación de elementos en rodapié (footer) (2 columnas en  */
+.rodapie__container{
+    display: flex;
+    /* organizar en columnas (flex-direction) según el tamaño del dispositivo (flex-wrap)*/
+    /* flex-direction: column;
+    flex-wrap: wrap; */
+    flex-flow: column wrap;
+
+}
+
+/* @media (consulta de medios) para trabajar condiciones  */
+@media(min-width:834px){
+
+    /* CABECERA */
+    /*p/ mostrar cabecera en dispositivos tabletas */
+    .cabecera__buscar__item{
+        display: block;
+    }
+
+    /* MENU */
+     /* Colocar menú a la izquierda en vertical */
+     .menu__container{
+        position: fixed;
+        top: 75px;
+        /* Disminuir altura */
+        height: 100%;
+        /* ajustar al ancho de página */
+        width: 75px;
+    }
+
+    /* Alinear elementos del menu (1a lista en vertical) */
+    .menu__lista{
+        display: flex;
+        /* colocar un elemento sobre el otro para alineación vertical */
+        flex-direction: column; 
+        /* espaciado de elementos en menú */
+        justify-content: space-between;
+        /* Separación vertical */
+        height:30%
+        
+    }
+    
+
+
+    /* RODAPIÉ */
+    /*p/separar columnas fijas del rodapié para tablets */
+    .rodapie__container{
+        justify-content: space-between;
+    }
+
+}
+
+
+/* Configuración para Computadoras de escritorio (DESKTOP) */
+@media(min-width:1440px){
+     
+    /*MENU  */
+    /* Colocar menú a la izquierda en vertical */
+     .menu__container{
+        width: 239px;
+        /* agregando scrollpara elemntos ocultos por no caber */
+        overflow: scroll;
+    }
+
+    /* selecciona las tres listas para mostrarlas*/
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4){
+        display: flex;
+    }
+
+    /* Asigna altura automática de lista para visualizar los cuatro elementos */
+    .menu__lista{
+        height: auto;
+        /* efecto de color al pasar mouse solo en el elemento seleccionado*/
+        padding: 20px 17px 20px 15px;
+        /* espaciado entre líneas */
+        gap: 15px
+    }
+
+    /* Cambiar orden de la tercera lista */
+    .menu__lista:nth-child(3){
+        flex-direction: column-reverse;
+    }
+
+    /* Ajustar elementos de la última lista(ordenamos cada elemento siguiendo orden predefinido desde  1 - n) */
+    /* ATENCIÓN NO PUEDE AYUDAR CUANDO SE LEE POR LECTOR DE PANTALLA => CAMBIAR INDEX DE HTML!!! */
+    .videojuegos{
+        order: 3;
+    }
+    .peliculas{
+        order:2
+    }
+    .premium{
+        order:1;
+    }
+
+
+
+    /* Visualizar texto en horizontal */
+    .menu__itens{
+        flex-direction: row;
+        /* espacio ícono-texto */
+        gap: 15px;
+        /* centrado de elementos en la fila */
+        align-items:center;
+    }
+
+    
+
+}
+
+
